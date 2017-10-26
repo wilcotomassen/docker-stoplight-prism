@@ -2,7 +2,7 @@ A minimal container for running Stoplight.io Prism, which can mock an API from a
 
 # Show version
 ```sh
-docker run wilcotomassen/prism:v0.1 run version
+docker run wilcotomassen/docker-stoplight-prism run version
 ```
 
 # Create a mocking server from a Swagger/OpenAPI Specification file
@@ -11,7 +11,7 @@ docker run -d \
     --name=my-mock-server \
     -p 4010:4010 \
     -v $(pwd)/api-specification.yaml:/app/api-specification.yaml \
-    wilcotomassen/prism:v0.1 run --mock --list --spec /app/api-specification.yaml
+    wilcotomassen/docker-stoplight-prism run --mock --list --spec /app/api-specification.yaml
 ```
 
 # Show all log lines
