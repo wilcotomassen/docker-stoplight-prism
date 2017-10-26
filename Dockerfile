@@ -1,13 +1,11 @@
-# webride.asia Stoplight.io Prism
+# Stoplight.io Prism
 #
-# VERSION 0.4.8
+# VERSION 0.1.0
 
-FROM gliderlabs/alpine:3.3
-MAINTAINER Thomas Barthelemy <thomas.barthelemy@outlook.com>
+FROM alpine:3.5
+MAINTAINER Wilco Tomassen <wilco@wilcotomassen.nl>
 
-RUN apk-install wget curl tar
-
-RUN wget -O /usr/bin/prism https://github.com/stoplightio/prism/releases/download/v0.6.21/prism_linux_amd64
-RUN chmod +x /usr/bin/prism
+RUN apk add --no-cache curl
+RUN curl https://raw.githubusercontent.com/stoplightio/prism/master/install.sh | sh
 
 ENTRYPOINT ["prism"]

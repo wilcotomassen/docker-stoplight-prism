@@ -1,29 +1,25 @@
-This is a minimal docker container (<23mb) for the Stoplight.io Prism proxy.
+A minimal container for running Stoplight.io Prism, which can mock an API from a Swagger/OpenAPI Specification file
 
-You can learn more about Stoplight.io and Prism here: https://help.stoplight.io/prism/getting-started
+# Show version
+```sh
+docker run wilcotomassen/prism:v0.1 run version
+```
 
-Usage
-=====
+# Create a mocking server from a Swagger/OpenAPI Specification file
+```sh
+docker run -d \
+    --name=my-mock-server \
+    -p 4010:4010 \
+    -v $(pwd)/api-specification.yaml:/app/api-specification.yaml \
+    wilcotomassen/prism:v0.1 run --mock --list --spec /app/api-specification.yaml
+```
 
-Basic
------
+# Show all log lines
+```sh
+docker logs my-mock-server
+```
 
-    docker run webridge/stoplight-prism version
-
-What you really need
---------------------
-Named container running in the background
-
-    docker run -d \
-        --name=my_proxy \
-        -p 4010:4010 \
-        -v $(pwd)/config.json:/app/config.json \
-        webridge/stoplight-prism run --config=/app/config.json
-        
-Logging
--------
-
-    # All logs
-    docker logs my_proxy
-    # Last 10 lines
-    docker logs --tail=10 my_proxy
+# Show last 10 lines
+```sh
+docker logs --tail=10 my-mock-server
+```
